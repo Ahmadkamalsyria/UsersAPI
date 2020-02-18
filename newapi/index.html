@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css" />
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous" />
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">USER DATA</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+  <div id="table">
+    <table class="table table-bordered table-dark">
+      <thead>
+        <tr>
+          <th>
+            ID
+          </th>
+          <th>
+            Name
+          </th>
+          <th>
+            Email
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="user in users">
+          <td data-title="Provider id">
+            {{user.id}}
+          </td>
+          <td data-title="Provider Name">
+            {{user.name}}
+          </td>
+          <td data-title="Email">
+            {{user.email}}
+          </td>
+          <td class="select">
+            <a class="button" href="#">
+              Select
+            </a>
+          </td>
+        </tr>
+
+        <div class="detail">
+          <div class="detail-container">
+            <dl v-for="user in users">
+              <dt>
+                Name
+              </dt>
+              <dd>
+
+                {{user.name}}
+
+              </dd>
+
+
+
+
+
+              <dt>
+                Username
+              </dt>
+              <dd>
+
+                {{user.username}}
+
+              </dd>
+
+
+
+              <dt>
+                Email
+              </dt>
+              <dd>
+
+                {{user.email}}
+
+              </dd>
+
+              <dt>
+                Address
+              </dt>
+              <dd>
+
+                Street: {{user.address.city}}, Suite: {{user.address.suite}}, City:{{user.address.city}}, zipcode:{{user.address.zipcode}},
+              </dd>
+
+
+
+
+
+              <dt>
+                Phone
+              </dt>
+              <dd>
+
+                {{user.phone}}
+
+              </dd>
+
+
+              <dt>
+                Website
+              </dt>
+              <dd>
+
+                {{user.website}}
+
+              </dd>
+
+
+
+              <dt>
+                Company
+              </dt>
+              <dd>
+
+                Name: {{user.company.name}} CatchPhrase:{{user.company.catchPhrase}} Bs:{{user.company.bs}}
+
+              </dd>
+
+
+            </dl>
+          </div>
+          <div class="detail-nav">
+            <button class="close">
+              Close
+            </button>
+          </div>
+        </div>
+      </tbody>
+    </table>
+  </div>
+  <div class="card text-center">
+    <div class="card-header"></div>
+    <div class="card-body">
+      <h5 class="card-title">USER DATA FROM API</h5>
+    </div>
+  </div>
+  <script>
+    var table = new Vue({
+      el: "#table",
+      data: {
+        users: []
+      },
+      mounted: function () {
+        axios
+          .get("https://jsonplaceholder.typicode.com/users")
+          .then(response => {
+            this.users = response.data;
+            console.log(response);
+          })
+          .catch(error => {
+            // handle error
+            console.log(error);
+          });
+      }
+    });
+  </script>
+  <script>
+
+
+    $(document).ready(function () {
+
+      var i = 0,
+        list = document.getElementsByClassName("button");
+      if (list) {
+        console.log(list)
+      }
+
+      for (i; i < list.length; i++) {
+        list[i].addEventListener("click", function (e) {
+          console.log("afdlkjdafklsjklasdj")
+          e.preventDefault();
+          console.log("hi");
+          $(".detail, html, body").toggleClass("open");
+        });
+      }
+
+
+
+      /* $(".button1, .close").click(function (e) {
+          e.preventDefault();
+          console.log("hi");
+          $(".detail, html, body").toggleClass("open");
+        }); */
+    });
+
+
+
+
+  </script>
+  <script src="index.js" />
+</body>
+
+</html>
