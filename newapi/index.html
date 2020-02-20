@@ -178,31 +178,38 @@
   <script>
 
 
-    $(document).ready(function () {
-
-      var i = 0,
-        list = document.getElementsByClassName("button");
-      if (list) {
-        console.log(list)
-      }
-
-      for (i; i < list.length; i++) {
-        list[i].addEventListener("click", function (e) {
-          console.log("afdlkjdafklsjklasdj")
-          e.preventDefault();
-          console.log("hi");
-          $(".detail, html, body").toggleClass("open");
-        });
-      }
+    setTimeout(function () {
 
 
+      $(document).ready(function () {
+        var i = 0,
+          buttonList = document.getElementsByClassName("button");
+        if (buttonList) {
+          console.log("kk", buttonList)
 
-      /* $(".button1, .close").click(function (e) {
-          e.preventDefault();
-          console.log("hi");
-          $(".detail, html, body").toggleClass("open");
-        }); */
-    });
+
+          for (i; i < buttonList.length; i++) {
+            buttonList[i].addEventListener("click", async function (e) {
+              console.log("afdlkjdafklsjklasdj")
+              e.preventDefault();
+              console.log("hi");
+              await $(".detail, html, body").toggleClass("open");
+            });
+          }
+        }
+
+
+
+        /* $(".button1, .close").click(function (e) {
+            e.preventDefault();
+            console.log("hi");
+            $(".detail, html, body").toggleClass("open");
+          }); */
+      });
+
+
+    }, 1000);
+
 
 
 
